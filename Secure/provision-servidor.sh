@@ -1,14 +1,10 @@
 #!/bin/bash
-
 set -e
 
-echo "== Actualizando sistema =="
 apt update -y
+apt install -y vsftpd openssl ftp
 
-echo "== Instalando vsftpd y cliente ftp =="
-apt install -y vsftpd ftp openssl
-
-echo "== Creando usuarios =="
+# Crear usuarios
 useradd -m luis || true
 useradd -m maria || true
 useradd -m miguel || true
@@ -17,17 +13,17 @@ echo "luis:1234" | chpasswd
 echo "maria:1234" | chpasswd
 echo "miguel:1234" | chpasswd
 
-echo "== Creando archivos de prueba =="
+# Archivos de prueba
 su - luis -c "touch luis1.txt luis2.txt"
 su - maria -c "touch maria1.txt maria2.txt"
 
-echo "== Configurando chroot list =="
+# Usuario no enjaulado
 echo "maria" > /etc/vsftpd.chroot_list
 
-echo "== Backup configuración original =="
+# Backup configuración
 cp /etc/vsftpd.conf /etc/vsftpd.conf.bak
 
-echo "== Configurando vsftpd =="
+# Configuración vsftpd
 cat > /etc/vsftpd.conf << 'EOF'
 #
 # 1. Modo standalone IPv4
@@ -39,7 +35,7 @@ listen_ipv6=NO
 ftpd_banner=--- Welcome to the FTP server of 'sistema.sol'---
 
 #
-# 3. Usuarios anónimos
+# 3. Acceso anónimo (solo descarga)
 anonymous_enable=YES
 anon_root=/srv/ftp
 anon_upload_enable=NO
@@ -60,7 +56,7 @@ connect_from_port_20=YES
 idle_session_timeout=720
 
 #
-# 7. Conexiones máximas
+# 7. Máximo conexiones
 max_clients=15
 
 #
@@ -74,7 +70,7 @@ chroot_local_user=YES
 allow_writeable_chroot=YES
 
 #
-# 10. Usuarios no enjaulados
+# 10. Usuario no enjaulado
 chroot_list_enable=YES
 chroot_list_file=/etc/vsftpd.chroot_list
 
@@ -98,19 +94,16 @@ rsa_cert_file=/etc/ssl/certs/example.test.pem
 require_ssl_reuse=NO
 EOF
 
-echo "== Creando certificado SSL =="
+# Certificado SSL
 openssl req -x509 -nodes -days 365 \
 -newkey rsa:2048 \
 -keyout /etc/ssl/certs/example.test.pem \
 -out /etc/ssl/certs/example.test.pem \
--subj "/C=ES/ST=Andalucia/L=Granada/O=sistema.sol/CN=ftp.sistema.sol"
+-subj "/C=ES/O=sistema.sol/CN=ftp.sistema.sol"
 
-echo "== Ajustando permisos FTP anónimo =="
+# Permisos FTP anónimo
 chown -R root:ftp /srv/ftp
 chmod -R 555 /srv/ftp
 
-echo "== Reiniciando servicio =="
 systemctl restart vsftpd
 systemctl enable vsftpd
-
-echo "== PROVISION FINALIZADO CORRECTAMENTE =="
