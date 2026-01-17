@@ -1,0 +1,4 @@
+---
+ftp_user: ftpuser
+ftp_password: '$6$t6.HTeWESheTZtTE$O05.GGOBYESqkyLKm5gqG5tjVqiKQALBLjkEkH32/67u1f.fOx/lJ66qc4QK50fEhYFGIueQbLqgSTKmLHFtL0'
+ftp_dir: /home/ftpuser/ftp

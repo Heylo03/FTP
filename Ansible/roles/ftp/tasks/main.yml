@@ -1,0 +1,42 @@
+---
+- name: Instalar servidor FTP (vsftpd)
+  ansible.builtin.apt:
+    name: "{{ ftp_vsftpd_package }}"
+    state: present
+    update_cache: true
+
+- name: Crear usuario FTP
+  ansible.builtin.user:
+    name: "{{ ftp_user }}"
+    password: "{{ ftp_password }}"
+    shell: /bin/false
+    create_home: true
+
+- name: Asegurarse que /bin/false está en /etc/shells
+  ansible.builtin.lineinfile:
+    path: /etc/shells
+    line: /bin/false
+    state: present
+
+- name: Crear directorio FTP
+  ansible.builtin.file:
+    path: "{{ ftp_dir }}"
+    state: directory
+    owner: "{{ ftp_user }}"
+    group: "{{ ftp_user }}"
+    mode: "0755"
+
+- name: Configurar vsftpd
+  ansible.builtin.template:
+    src: vsftpd.conf.j2
+    dest: "{{ ftp_vsftpd_config_file }}"
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reiniciar vsftpd
+
+- name: Asegurar que el servicio FTP está activo
+  ansible.builtin.service:
+    name: "{{ ftp_vsftpd_service }}"
+    state: started
+    enabled: true

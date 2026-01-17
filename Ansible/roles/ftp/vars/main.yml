@@ -1,0 +1,4 @@
+---
+ftp_vsftpd_service: vsftpd
+ftp_vsftpd_package: vsftpd
+ftp_vsftpd_config_file: /etc/vsftpd.conf
