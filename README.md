@@ -35,8 +35,11 @@ Aprender la configuración básica de un servidor FTP público aplicando restric
 
 ### Práctica
 Login desde la consola de forma anónima
+
 ![Anónimo](img/anonym1.png)
+
 Prueba de conexion usando CrossFTP desde un sistema Windows
+
 ![Anónimo](img/anonym2.png)
 
 ![Anónimo](img/anonym3.png)
