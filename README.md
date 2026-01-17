@@ -85,6 +85,18 @@ Proyecto colaborativo para desplegar un **servidor FTP automatizado**, utilizand
 ### Objetivo
 Aplicar **infraestructura como código (IaC)**, automatizar servicios y trabajar de forma colaborativa siguiendo buenas prácticas.
 
+### Práctica 
+
+
+![Conexión FTP anónima](img/ansible1.png)
+
+![Conexión FTP anónima](img/ansible2.png)
+
+![Conexión FTP anónima](img/ansible3.png)
+
+![Conexión FTP anónima](img/ansible4.png)
+
+
 ---
 
 ## Herramientas Utilizadas
