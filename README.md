@@ -33,6 +33,16 @@ Configuración de un **servidor FTP anónimo** destinado a funcionar como **mirr
 ### Objetivo
 Aprender la configuración básica de un servidor FTP público aplicando restricciones de seguridad y rendimiento.
 
+### Práctica
+Login desde la consola de forma anónima
+![Anónimo](img/anonym1.png)
+Prueba de conexion usando CrossFTP desde un sistema Windows
+![Anónimo](img/anonym2.png)
+
+![Anónimo](img/anonym3.png)
+
+![Anónimo](img/anonym4.png)
+
 ---
 
 ## 2. FTP Seguro con vsftpd
@@ -61,6 +71,16 @@ Instalación y configuración de un **servidor FTP seguro** utilizando `vsftpd`,
 ### Objetivo
 Comprender el funcionamiento del protocolo FTP y su configuración segura en entornos Linux.
 
+### Práctica
+Login con el usuario pepe (usuario no válido)
+Login con usuario anónimo (accede)
+Login con usuario válido María (accede)
+
+![Seguro](img/secure1.png)
+![Seguro](img/secure2.png)
+![Seguro](img/secure3.png)
+![Seguro](img/secure4.png)
+
 ---
 
 ## 3. Servidor FTP con Vagrant y Ansible
@@ -87,14 +107,16 @@ Aplicar **infraestructura como código (IaC)**, automatizar servicios y trabajar
 
 ### Práctica 
 
+Login en la consola
+![Ansible](img/ansible1.png)
 
-![Conexión FTP anónima](img/ansible1.png)
+Login de usuario usando Filezilla
+![Ansible](img/ansible2.png)
 
-![Conexión FTP anónima](img/ansible2.png)
+![Ansible](img/ansible3.png)
 
-![Conexión FTP anónima](img/ansible3.png)
-
-![Conexión FTP anónima](img/ansible4.png)
+Creación de elementos en el servidor
+![Ansible](img/ansible4.png)
 
 
 ---
