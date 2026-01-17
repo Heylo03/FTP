@@ -111,14 +111,17 @@ Aplicar **infraestructura como código (IaC)**, automatizar servicios y trabajar
 ### Práctica 
 
 Login en la consola
+
 ![Ansible](img/ansible1.png)
 
 Login de usuario usando Filezilla
+
 ![Ansible](img/ansible2.png)
 
 ![Ansible](img/ansible3.png)
 
 Creación de elementos en el servidor
+
 ![Ansible](img/ansible4.png)
 
 
@@ -135,4 +138,4 @@ Creación de elementos en el servidor
 - Ansible
 - ansible-lint
 
-
+### Pablo Corral Romera
